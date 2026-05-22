@@ -1,0 +1,42 @@
+<Window x:Class="DatabaseApp.Views.AddEditCustomerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Заказчик" Height="500" Width="500"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="ID:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="0" x:Name="CustomerIdTextBox" Margin="0,25,0,10" Height="30"/>
+
+        <TextBlock Grid.Row="1" Text="Название:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="1" x:Name="NameTextBox" Margin="0,25,0,10" Height="30"/>
+
+        <TextBlock Grid.Row="2" Text="ИНН:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="2" x:Name="InnTextBox" Margin="0,25,0,10" Height="30"/>
+
+        <TextBlock Grid.Row="3" Text="Адрес:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="3" x:Name="AddressTextBox" Margin="0,25,0,10" Height="30"/>
+
+        <TextBlock Grid.Row="4" Text="Телефон:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="4" x:Name="PhoneTextBox" Margin="0,25,0,10" Height="30"/>
+
+        <CheckBox Grid.Row="5" x:Name="IsSalesmanCheckBox" Content="Является поставщиком" Margin="0,10,0,10"/>
+        <CheckBox Grid.Row="6" x:Name="IsBuyerCheckBox" Content="Является покупателем" Margin="0,0,0,10"/>
+
+        <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Сохранить" Width="100" Height="35" Margin="0,0,10,0" Click="SaveButton_Click"/>
+            <Button Content="Отмена" Width="100" Height="35" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

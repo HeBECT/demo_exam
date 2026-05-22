@@ -1,0 +1,36 @@
+<Window x:Class="DatabaseApp.Views.AddEditProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Продукция/Материал" Height="400" Width="500"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Наименование:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="0" x:Name="NameTextBox" Margin="0,25,0,10" Height="30"/>
+
+        <TextBlock Grid.Row="1" Text="Единица измерения:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="1" x:Name="UnitTextBox" Margin="0,25,0,10" Height="30"/>
+
+        <TextBlock Grid.Row="2" Text="Цена:" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="2" x:Name="PriceTextBox" Margin="0,25,0,10" Height="30"/>
+
+        <TextBlock Grid.Row="3" Text="Тип:" Margin="0,0,0,5"/>
+        <ComboBox Grid.Row="3" x:Name="TypeComboBox" Margin="0,25,0,10" Height="30">
+            <ComboBoxItem Content="Продукция" Tag="product"/>
+            <ComboBoxItem Content="Материал" Tag="material"/>
+        </ComboBox>
+
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Сохранить" Width="100" Height="35" Margin="0,0,10,0" Click="SaveButton_Click"/>
+            <Button Content="Отмена" Width="100" Height="35" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,18 @@
+<Window x:Class="DemEkz.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Главное меню" Height="380" Width="300"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="15">
+        <StackPanel>
+            <Label Content="Выберите таблицу для просмотра / добавления:"
+                   FontSize="12" Margin="0,0,0,10" FontWeight="Bold"/>
+            <Button Content="Заказчики"             Click="BtnZakazchiki_Click"    Margin="0,5" Height="35"/>
+            <Button Content="Заказ покупателя"      Click="BtnZakaz_Click"         Margin="0,5" Height="35"/>
+            <Button Content="Производство"          Click="BtnProizvodstvo_Click"  Margin="0,5" Height="35"/>
+            <Button Content="Спецификация"          Click="BtnSpecifikaciya_Click" Margin="0,5" Height="35"/>
+            <Button Content="Цены"                  Click="BtnCeny_Click"          Margin="0,5" Height="35"/>
+            <Button Content="Расчет стоимости"      Click="BtnRaschet_Click"       Margin="0,5" Height="35"/>
+        </StackPanel>
+    </Grid>
+</Window>

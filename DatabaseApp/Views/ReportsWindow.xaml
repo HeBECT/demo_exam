@@ -1,0 +1,127 @@
+<Window x:Class="DatabaseApp.Views.ReportsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="Отчёты" Height="700" Width="1200" MinHeight="500" MinWidth="800"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="RightAlignedCell" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <Border Grid.Row="0" Background="#2196F3" Padding="15">
+            <TextBlock Text="Оборотно-сальдовая ведомость" 
+                       FontSize="18" FontWeight="Bold" 
+                       Foreground="White"/>
+        </Border>
+
+        <!-- Панель фильтров -->
+        <Border Grid.Row="1" Background="#F5F5F5" Padding="15" 
+                BorderBrush="#CCCCCC" BorderThickness="0,0,0,1">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                <StackPanel>
+                    <TextBlock Text="Период:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="С:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <DatePicker x:Name="StartDatePicker" Width="150" Height="30"/>
+                        
+                        <TextBlock Text="По:" VerticalAlignment="Center" Margin="20,0,10,0"/>
+                        <DatePicker x:Name="EndDatePicker" Width="150" Height="30"/>
+                        
+                        <Button Content="Сформировать отчёт" Width="180" Height="35" 
+                                Margin="30,0,0,0" Click="GenerateReportButton_Click"
+                                Background="#4CAF50" Foreground="White" 
+                                FontWeight="Bold" Cursor="Hand"/>
+                        
+                        <Button Content="Экспорт в CSV" Width="150" Height="35" 
+                                Margin="10,0,0,0" Click="ExportButton_Click"
+                                Background="#FF9800" Foreground="White" 
+                                FontWeight="Bold" Cursor="Hand"/>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <!-- Таблица отчёта с прокруткой -->
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" 
+                      VerticalScrollBarVisibility="Auto" Margin="10">
+            <DataGrid x:Name="ReportDataGrid" 
+                      AutoGenerateColumns="False" 
+                      IsReadOnly="True"
+                      SelectionMode="Single"
+                      AlternatingRowBackground="#F9F9F9"
+                      GridLinesVisibility="All"
+                      HeadersVisibility="All"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Disabled">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Счёт" Binding="{Binding AccountNumber}" 
+                                        Width="80" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Наименование счёта" Binding="{Binding AccountName}" 
+                                        Width="*" MinWidth="200"/>
+                    <DataGridTextColumn Header="Сальдо начальное Дт" 
+                                        Binding="{Binding OpeningBalanceDebit, StringFormat=N2}" 
+                                        Width="150" ElementStyle="{StaticResource RightAlignedCell}"/>
+                    <DataGridTextColumn Header="Сальдо начальное Кт" 
+                                        Binding="{Binding OpeningBalanceCredit, StringFormat=N2}" 
+                                        Width="150" ElementStyle="{StaticResource RightAlignedCell}"/>
+                    <DataGridTextColumn Header="Оборот Дт" 
+                                        Binding="{Binding TurnoverDebit, StringFormat=N2}" 
+                                        Width="150" ElementStyle="{StaticResource RightAlignedCell}"/>
+                    <DataGridTextColumn Header="Оборот Кт" 
+                                        Binding="{Binding TurnoverCredit, StringFormat=N2}" 
+                                        Width="150" ElementStyle="{StaticResource RightAlignedCell}"/>
+                    <DataGridTextColumn Header="Сальдо конечное Дт" 
+                                        Binding="{Binding ClosingBalanceDebit, StringFormat=N2}" 
+                                        Width="150" ElementStyle="{StaticResource RightAlignedCell}"/>
+                    <DataGridTextColumn Header="Сальдо конечное Кт" 
+                                        Binding="{Binding ClosingBalanceCredit, StringFormat=N2}" 
+                                        Width="150" ElementStyle="{StaticResource RightAlignedCell}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+        <!-- Итоги -->
+        <Border Grid.Row="3" Background="#E3F2FD" Padding="15" 
+                BorderBrush="#2196F3" BorderThickness="0,2,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock x:Name="StatusTextBlock" 
+                               Text="Выберите период и нажмите 'Сформировать отчёт'" 
+                               VerticalAlignment="Center" 
+                               FontStyle="Italic" 
+                               Foreground="#666666"/>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock Text="Итого оборотов:" FontWeight="Bold" 
+                               VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBlock Text="Дт:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <TextBlock x:Name="TotalDebitTextBlock" Text="0.00" 
+                               FontWeight="Bold" VerticalAlignment="Center" 
+                               Margin="0,0,20,0" Foreground="#4CAF50"/>
+                    <TextBlock Text="Кт:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <TextBlock x:Name="TotalCreditTextBlock" Text="0.00" 
+                               FontWeight="Bold" VerticalAlignment="Center" 
+                               Foreground="#F44336"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,73 @@
+<Window x:Class="DemEkz.ProizvodstvoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Производство" Height="700" Width="1000"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="0" x:Name="dgData"
+                  AutoGenerateColumns="True" IsReadOnly="True"
+                  Margin="0,0,0,10"
+                  SelectionChanged="dgData_SelectionChanged"/>
+
+        <GroupBox Grid.Row="1" Header="Добавить запись" Padding="8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Номер:"/>
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtNomer" Margin="3" Height="24"/>
+
+                <Label Grid.Row="0" Grid.Column="2" Content="Дата (гг-мм-дд):"/>
+                <TextBox Grid.Row="0" Grid.Column="3" x:Name="txtData" Margin="3" Height="24"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Наим. продукции:"/>
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtNazvanieProdukcii" Margin="3" Height="24"/>
+
+                <Label Grid.Row="1" Grid.Column="2" Content="Код продукции:"/>
+                <TextBox Grid.Row="1" Grid.Column="3" x:Name="txtKodProdukcii" Margin="3" Height="24"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Кол-во продукции:"/>
+                <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtKolProdukcii" Margin="3" Height="24"/>
+
+                <Label Grid.Row="2" Grid.Column="2" Content="Ед. изм. продукции:"/>
+                <TextBox Grid.Row="2" Grid.Column="3" x:Name="txtEdProdukcii" Margin="3" Height="24"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Content="Наим. материала:"/>
+                <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtNazvanieMateriala" Margin="3" Height="24"/>
+
+                <Label Grid.Row="3" Grid.Column="2" Content="Код материала:"/>
+                <TextBox Grid.Row="3" Grid.Column="3" x:Name="txtKodMateriala" Margin="3" Height="24"/>
+
+                <Label Grid.Row="4" Grid.Column="0" Content="Кол-во материала:"/>
+                <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtKolMateriala" Margin="3" Height="24"/>
+
+                <Label Grid.Row="4" Grid.Column="2" Content="Ед. изм. материала:"/>
+                <TextBox Grid.Row="4" Grid.Column="3" x:Name="txtEdMateriala" Margin="3" Height="24"/>
+
+                <StackPanel Grid.Row="5" Grid.ColumnSpan="4" Orientation="Horizontal">
+                    <Button x:Name="btnAdd" Content="Добавить" Click="BtnAdd_Click"
+                            Height="30" Margin="3" Width="200"/>
+                    <Button Content="Новая запись" Click="BtnClear_Click"
+                            Height="30" Margin="3" Width="150"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

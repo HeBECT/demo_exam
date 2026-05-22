@@ -1,0 +1,54 @@
+<Window x:Class="DatabaseApp.Views.AddEditCounterpartyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Контрагент" Height="500" Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Наименование:" Margin="0,5"/>
+        <TextBox Grid.Row="0" x:Name="NameTextBox" Height="25" Margin="150,5,0,5"/>
+
+        <TextBlock Grid.Row="1" Text="ИНН:" Margin="0,5"/>
+        <TextBox Grid.Row="1" x:Name="InnTextBox" Height="25" Margin="150,5,0,5"/>
+
+        <TextBlock Grid.Row="2" Text="КПП:" Margin="0,5"/>
+        <TextBox Grid.Row="2" x:Name="KppTextBox" Height="25" Margin="150,5,0,5"/>
+
+        <TextBlock Grid.Row="3" Text="Адрес:" Margin="0,5"/>
+        <TextBox Grid.Row="3" x:Name="AddressTextBox" Height="25" Margin="150,5,0,5"/>
+
+        <TextBlock Grid.Row="4" Text="Телефон:" Margin="0,5"/>
+        <TextBox Grid.Row="4" x:Name="PhoneTextBox" Height="25" Margin="150,5,0,5"/>
+
+        <TextBlock Grid.Row="5" Text="Email:" Margin="0,5"/>
+        <TextBox Grid.Row="5" x:Name="EmailTextBox" Height="25" Margin="150,5,0,5"/>
+
+        <TextBlock Grid.Row="6" Text="Контактное лицо:" Margin="0,5"/>
+        <TextBox Grid.Row="6" x:Name="ContactPersonTextBox" Height="25" Margin="150,5,0,5"/>
+
+        <TextBlock Grid.Row="7" Text="Тип:" Margin="0,5"/>
+        <ComboBox Grid.Row="7" x:Name="TypeComboBox" Height="25" Margin="150,5,0,5">
+            <ComboBoxItem Content="Поставщик" Tag="supplier"/>
+            <ComboBoxItem Content="Покупатель" Tag="customer"/>
+            <ComboBoxItem Content="Поставщик и покупатель" Tag="both"/>
+        </ComboBox>
+
+        <StackPanel Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="Сохранить" Width="100" Height="30" Margin="5" Click="SaveButton_Click"/>
+            <Button Content="Отмена" Width="100" Height="30" Margin="5" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

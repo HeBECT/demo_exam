@@ -1,0 +1,92 @@
+<Window x:Class="DatabaseApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Главное окно - Система учета" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <Border Grid.Row="0" Background="#2196F3" Padding="15">
+            <Grid>
+                <TextBlock Text="Система бухгалтерского учета" 
+                           FontSize="20" FontWeight="Bold" 
+                           Foreground="White" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock x:Name="UserInfoTextBlock" 
+                               Foreground="White" VerticalAlignment="Center" 
+                               Margin="0,0,15,0"/>
+                    <Button Content="Выход" Width="80" Height="30" 
+                            Click="LogoutButton_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Основное содержимое -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Меню -->
+            <Border Grid.Column="0" BorderBrush="#CCCCCC" BorderThickness="1" 
+                    Background="#F5F5F5" Margin="0,0,10,0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                              HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Справочники" FontSize="16" FontWeight="Bold" 
+                                   Margin="0,0,0,10"/>
+                        
+                        <Button Content="Заказчики" Height="40" Margin="0,5" 
+                                Click="CounterpartiesButton_Click"/>
+                        <Button Content="Продукция и материалы" Height="40" Margin="0,5" 
+                                Click="ProductsButton_Click"/>
+                        <Button Content="Спецификации" Height="40" Margin="0,5" 
+                                Click="AccountsButton_Click"/>
+                        
+                        <Separator Margin="0,15"/>
+                        
+                        <TextBlock Text="Документы" FontSize="16" FontWeight="Bold" 
+                                   Margin="0,10,0,10"/>
+                        
+                        <Button Content="Заказы покупателей" Height="40" Margin="0,5" 
+                                Click="DocumentsButton_Click"/>
+                        <Button Content="Производство" Height="40" Margin="0,5" 
+                                Click="TransactionsButton_Click"/>
+                        
+                        <Separator Margin="0,15"/>
+                        
+                        <TextBlock Text="Отчеты" FontSize="16" FontWeight="Bold" 
+                                   Margin="0,10,0,10"/>
+                        
+                        <Button Content="Расчет стоимости" Height="40" 
+                                Margin="0,5,0,10" Click="ReportsButton_Click"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <!-- Рабочая область -->
+            <Border Grid.Column="1" BorderBrush="#CCCCCC" BorderThickness="1">
+                <Grid>
+                    <TextBlock x:Name="WelcomeTextBlock" 
+                               Text="Добро пожаловать в систему учета!"
+                               FontSize="18" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"
+                               Foreground="#666666"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Статус бар -->
+        <Border Grid.Row="2" Background="#F0F0F0" BorderBrush="#CCCCCC" 
+                BorderThickness="0,1,0,0" Padding="10,5">
+            <TextBlock x:Name="StatusTextBlock" Text="Готово"/>
+        </Border>
+    </Grid>
+</Window>
